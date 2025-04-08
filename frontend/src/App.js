@@ -175,103 +175,98 @@ const HomePage = () => {
 
 // App component
 const App = () => {
-  
+
   const { totalItems } = useCart();  // Lấy totalItems từ CartContext
 
   return (  // Phải có return JSX
-  
-  <>
-  
-    {/* Top bar */}
-    <div className="top-bar">
-      <div className="container d-flex justify-content-between align-items-center">
-        <div className="left-info">📢 Nhóm 13</div>
-        <div className="center-phone text-center flex-grow-1">📞 0909 123 456</div>
-        <div className="right-links">
-          <a href="#">Đăng nhập</a>
-          <a href="#">Đăng ký</a>
+
+    <>
+
+      {/* Top bar */}
+      <div className="top-bar">
+        <div className="container d-flex justify-content-between align-items-center">
+          <div className="left-info">📢 Nhóm 13</div>
+          <div className="center-phone text-center flex-grow-1">📞 0909 123 456</div>
+          <div className="right-links">
+            <a href="#">Đăng nhập</a>
+            <a href="#">Đăng ký</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    {/* Navbar */}
-    <nav className="navbar navbar-expand-lg navbar-dark bg-green-fresh p-3">
-      <div className="container d-flex align-items-center justify-content-between">
-        <div className="d-flex align-items-center">
-          <Link className="navbar-brand" to="/">
-            <img src="/logo/logo.jpg" alt="Logo" height="100" />
-          </Link>
-          <span
-            className="text-success fw-bold fs-4 ms-5 d-flex align-items-center"
-            style={{ fontFamily: "'Pacifico', cursive" }}
-          >
-            Thế giới cây cảnh - Đến là mua
-          </span>
-        </div>
-
-        <div className="d-flex align-items-center gap-3 w-50">
-          <div className="input-group w-100">
-            <input
-              type="search"
-              className="form-control"
-              placeholder="Tìm kiếm..."
-              aria-label="Tìm kiếm"
-            />
-            <span className="input-group-text text-white" style={{ backgroundColor: "#28a745" }}>
-              <i className="bi bi-search"></i>
+      {/* Navbar */}
+      <nav className="navbar navbar-expand-lg navbar-dark bg-green-fresh p-3">
+        <div className="container d-flex align-items-center justify-content-between">
+          <div className="d-flex align-items-center">
+            <Link className="navbar-brand" to="/">
+              <img src="/logo/logo.jpg" alt="Logo" height="100" />
+            </Link>
+            <span
+              className="text-success fw-bold fs-4 ms-5 d-flex align-items-center"
+              style={{ fontFamily: "'Pacifico', cursive" }}
+            >
+              Thế giới cây cảnh - Đến là mua
             </span>
           </div>
-          
-          <Link to="/gio-hang" className="btn btn-outline-success position-relative">
-         🛒
-         {totalItems > 0 && (
-    <span
-      className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-      style={{ fontSize: "0.7rem" }}
-    >
-      {totalItems}
-    </span>
-  )}
-</Link>
 
-          
+          <div className="d-flex align-items-center gap-3 w-50">
+            <div className="input-group w-100">
+              <input
+                type="search"
+                className="form-control"
+                placeholder="Tìm kiếm..."
+                aria-label="Tìm kiếm"
+              />
+              <span className="input-group-text text-white" style={{ backgroundColor: "#28a745" }}>
+                <i className="bi bi-search"></i>
+              </span>
+            </div>
 
-          
+            <Link to="/gio-hang" className="btn position-relative gio-hang-btn">
+              <span className="cart-icon">🛒</span>
+              {totalItems > 0 && (
+                <span
+                  className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-badge"
+                >
+                  {totalItems}
+                </span>
+              )}
+            </Link>
+          </div>
+        </div>
+      </nav>
+
+      {/* Menu ngang */}
+      <div className="shadow-sm">
+        <div className="container menu-bar">
+          <ul className="nav justify-content-between py-2">
+            <li className="nav-item flex-fill text-center">
+              <Link className="nav-link menu-link active" to="/">TRANG CHỦ</Link>
+            </li>
+            <li className="nav-item flex-fill text-center">
+              <Link className="nav-link menu-link" to="/gioi-thieu">GIỚI THIỆU</Link>
+            </li>
+            <li className="nav-item flex-fill text-center">
+              <a className="nav-link menu-link" href="#">LIÊN HỆ</a>
+            </li>
+            <li className="nav-item flex-fill text-center">
+              <a className="nav-link menu-link" href="#">TIN TỨC</a>
+            </li>
+            <li className="nav-item flex-fill text-center">
+              <a className="nav-link menu-link" href="#">HỎI ĐÁP</a>
+            </li>
+          </ul>
         </div>
       </div>
-    </nav>
 
-    {/* Menu ngang */}
-    <div className="shadow-sm">
-      <div className="container menu-bar">
-        <ul className="nav justify-content-between py-2">
-          <li className="nav-item flex-fill text-center">
-            <Link className="nav-link menu-link active" to="/">TRANG CHỦ</Link>
-          </li>
-          <li className="nav-item flex-fill text-center">
-          <Link className="nav-link menu-link" to="/gioi-thieu">GIỚI THIỆU</Link>
-          </li>
-          <li className="nav-item flex-fill text-center">
-            <a className="nav-link menu-link" href="#">LIÊN HỆ</a>
-          </li>
-          <li className="nav-item flex-fill text-center">
-            <a className="nav-link menu-link" href="#">TIN TỨC</a>
-          </li>
-          <li className="nav-item flex-fill text-center">
-            <a className="nav-link menu-link" href="#">HỎI ĐÁP</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    {/* Route nội dung */}
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/gio-hang" element={<GioHang />} />
-      <Route path="/gioi-thieu" element={<GioiThieu />} />
-    </Routes>
-  </>
-);
+      {/* Route nội dung */}
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/gio-hang" element={<GioHang />} />
+        <Route path="/gioi-thieu" element={<GioiThieu />} />
+      </Routes>
+    </>
+  );
 };
 
 export default App;
