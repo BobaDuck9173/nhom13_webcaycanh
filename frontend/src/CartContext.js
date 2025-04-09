@@ -1,11 +1,19 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 const CartContext = createContext();
 
 export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+    const storedCart = localStorage.getItem("gioHang");
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
+
+  // Đồng bộ cartItems vào localStorage mỗi khi thay đổi
+  useEffect(() => {
+    localStorage.setItem("gioHang", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   // Thêm sản phẩm vào giỏ hàng
   const addToCart = (product) => {

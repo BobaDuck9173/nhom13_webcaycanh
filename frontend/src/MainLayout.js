@@ -7,7 +7,8 @@ import { Routes, Route, Link } from "react-router-dom";
 import GioHang from "./GioHang";
 import { useCart } from "./CartContext";
 import GioiThieu from "./GioiThieu";
-import Authentication from "./Authentication";
+import { toast } from "react-toastify";
+import ThanhToan from "./ThanhToan";  
 
 // Trang chủ
 const HomePage = () => {
@@ -19,7 +20,7 @@ const HomePage = () => {
 
   const handleAddToCart = (product) => {
     addToCart(product);
-    alert("✅ Đã thêm vào giỏ hàng!");
+    toast.success("✅ Đã thêm vào giỏ hàng!");
   };
 
   useEffect(() => {
@@ -265,7 +266,7 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/gio-hang" element={<GioHang />} />
         <Route path="/gioi-thieu" element={<GioiThieu />} />
-        <Route path="/dang-nhap" element={<Authentication />} />
+        <Route path="/thanh-toan" element={<ThanhToan />} />
       </Routes>
     </>
   );

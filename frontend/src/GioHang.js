@@ -1,7 +1,9 @@
 import React from "react";
 import { useCart } from "./CartContext";
+import { useNavigate } from "react-router-dom";
 
 const GioHang = () => {
+  const navigate = useNavigate();
   const { cartItems, removeFromCart } = useCart();
 
   const tinhTong = () => {
@@ -58,6 +60,14 @@ const GioHang = () => {
           </table>
           <div className="text-end fw-bold text-danger">
             Tổng cộng: {tinhTong().toLocaleString("vi-VN")} đ
+          </div>
+          <div className="d-flex justify-content-between mt-4">
+            <a href="/" className="btn btn-outline-secondary">
+              ← Tiếp tục mua sắm
+            </a>
+            <button className="btn btn-success" onClick={() => navigate("/thanh-toan")}>
+              Đặt hàng
+            </button>
           </div>
         </>
       )}
