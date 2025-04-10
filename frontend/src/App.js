@@ -6,6 +6,9 @@ import GioiThieu from "./GioiThieu";
 import Authentication from "./Authentication";
 import CustomToast from "./CustomToast";
 import ThanhToan from "./ThanhToan";  
+import HoiDap from "./HoiDap";
+import TinTuc from "./TinTuc";
+import TinTucDetail from './TinTucDetail';
 
 const App = () => {
   return (
@@ -16,6 +19,9 @@ const App = () => {
         <Route path="/gio-hang" element={<GioHang />} />
         <Route path="/gioi-thieu" element={<GioiThieu />} />
         <Route path="/thanh-toan" element={<ThanhToan />} />
+        <Route path="/hoi-dap" element={<HoiDap />} />
+        <Route path="/tin-tuc" element={<TinTuc />} />
+        <Route path="/tin-tuc/:id" element={<TinTucDetail />} />
       </Route>
 
       <Route element={<Authentication />}>

@@ -277,3 +277,82 @@
   color: #28a745;
   border-color: #28a745;
 }
+
+/* Override hover effect for HoiDap page */
+.hoi-dap-page .list-group-item {
+  cursor: default;
+  transition: none;
+}
+
+.hoi-dap-page .list-group-item:hover {
+  background-color: inherit;
+  color: inherit;
+}
+
+/* News page styles */
+.tin-tuc-card {
+  transition: transform 0.2s;
+}
+
+.tin-tuc-card:hover {
+  transform: translateY(-5px);
+}
+
+.tin-tuc-image {
+  height: 200px;
+  object-fit: cover;
+}
+
+.tin-tuc-meta {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.tin-tuc-category {
+  text-decoration: none;
+  color: #28a745;
+}
+
+.tin-tuc-category:hover {
+  text-decoration: underline;
+}
+
+/* Blog post styles */
+.blog-content {
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.blog-content h3 {
+  color: #28a745;
+  margin: 1.5rem 0 1rem;
+  font-weight: 600;
+}
+
+.blog-content p {
+  margin-bottom: 1.2rem;
+}
+
+.blog-content ul {
+  margin-bottom: 1.5rem;
+  padding-left: 1.2rem;
+}
+
+.blog-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* News page hover effects */
+.tin-tuc-page .list-group-item:hover {
+  background-color: #e8f5e9 !important; /* Light green background */
+  color: #2e7d32 !important; /* Darker green text for contrast */
+  transition: all 0.2s ease;
+}
+
+.tin-tuc-page .list-group-item:hover .badge {
+  background-color: #66bb6a !important; /* Lighter green for badge */
+}
+
+.tin-tuc-page .list-group-item:hover .text-muted {
+  color: #2e7d32 !important; /* Change text color on hover */
+}

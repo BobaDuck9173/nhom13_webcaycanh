@@ -9,6 +9,9 @@ import { useCart } from "./CartContext";
 import GioiThieu from "./GioiThieu";
 import { toast } from "react-toastify";
 import ThanhToan from "./ThanhToan";  
+import Hoidap from "./HoiDap";
+import TinTuc from "./TinTuc";
+import TinTucDetail from './TinTucDetail';
 
 // Trang chủ
 const HomePage = () => {
@@ -252,10 +255,10 @@ const App = () => {
               <a className="nav-link menu-link" href="#">LIÊN HỆ</a>
             </li>
             <li className="nav-item flex-fill text-center">
-              <a className="nav-link menu-link" href="#">TIN TỨC</a>
+              <a className="nav-link menu-link" href="/tin-tuc">TIN TỨC</a>
             </li>
             <li className="nav-item flex-fill text-center">
-              <a className="nav-link menu-link" href="#">HỎI ĐÁP</a>
+              <a className="nav-link menu-link" href="/hoi-dap">HỎI ĐÁP</a>
             </li>
           </ul>
         </div>
@@ -267,6 +270,9 @@ const App = () => {
         <Route path="/gio-hang" element={<GioHang />} />
         <Route path="/gioi-thieu" element={<GioiThieu />} />
         <Route path="/thanh-toan" element={<ThanhToan />} />
+        <Route path="/hoi-dap" element={<Hoidap />} />
+        <Route path="/tin-tuc" element={<TinTuc />} />
+        <Route path="/tin-tuc/:id" element={<TinTucDetail />} />
       </Routes>
     </>
   );
