@@ -40,7 +40,7 @@ const UsersManagement = ({ users: initialUsers }) => {
 
   const fetchUsers = () => {
     axios
-      .get("http://127.0.0.1:8000/api/users")
+      .get("https://caycanh13api.vercel.app/api/users")
       .then((res) => {
         setUsers(res.data);
       })
@@ -58,7 +58,7 @@ const UsersManagement = ({ users: initialUsers }) => {
   const deleteUser = (userId) => {
     if (window.confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
       axios
-        .delete(`http://127.0.0.1:8000/api/users/${userId}`)
+        .delete(`https://caycanh13api.vercel.app/api/users/${userId}`)
         .then(() => {
           setUsers(users.filter(u => u.id !== userId));
           alert("Xóa người dùng thành công!");
@@ -77,7 +77,7 @@ const UsersManagement = ({ users: initialUsers }) => {
     if (editingUser) {
       // Update existing user
       axios
-        .put(`http://127.0.0.1:8000/api/users/${userData.id}`, userData)
+        .put(`https://caycanh13api.vercel.app/api/users/${userData.id}`, userData)
         .then(() => {
           // Update users list
           const updatedUsers = users.map(u => 
@@ -106,7 +106,7 @@ const UsersManagement = ({ users: initialUsers }) => {
       const tempUser = { ...userData, id: "usr" + Date.now().toString().slice(-5) };
       
       axios
-        .post("http://127.0.0.1:8000/api/users", tempUser)
+        .post("https://caycanh13api.vercel.app/api/users", tempUser)
         .then(res => {
           setUsers([...users, res.data || tempUser]);
           setNewUser({

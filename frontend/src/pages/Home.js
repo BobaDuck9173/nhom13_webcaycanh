@@ -7,7 +7,7 @@ function Home() {
   // Giả sử API Laravel của bạn có endpoint: http://127.0.0.1:8000/api/plants
   useEffect(() => {
     axios
-      .get('http://127.0.0.1:8000/api/plants')
+      .get('https://caycanh13api.vercel.app/api/plants')
       .then((response) => {
         setPlants(response.data);
       })

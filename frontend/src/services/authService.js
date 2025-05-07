@@ -1,7 +1,7 @@
 // frontend/src/services/authService.js
 import axios from 'axios';
 
-const API_URL = 'http://127.0.0.1:8000/api/tai-khoan';
+const API_URL = 'https://caycanh13api.vercel.app/api/tai-khoan';
 
 export const authService = {
     dangNhap: async (credentials) => {

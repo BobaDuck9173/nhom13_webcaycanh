@@ -45,7 +45,7 @@ const Admin = () => {
     setLoading(true);
 
     // Fetch products
-    axios.get("http://127.0.0.1:8000/api/sanpham")
+    axios.get("https://caycanh13api.vercel.app/api/sanpham")
       .then((res) => {
         setProducts(res.data);
         setLoading(false);
@@ -56,7 +56,7 @@ const Admin = () => {
       });
 
     // Fetch categories
-    axios.get("http://127.0.0.1:8000/api/sanpham/danhmuc")
+    axios.get("https://caycanh13api.vercel.app/api/sanpham/danhmuc")
       .then((res) => {
         setCategories(res.data);
       })
@@ -65,7 +65,7 @@ const Admin = () => {
       });
 
     // Fetch orders with field mapping
-    axios.get("http://127.0.0.1:8000/api/donhang")
+    axios.get("https://caycanh13api.vercel.app/api/donhang")
       .then((res) => {
         const mappedOrders = res.data.map((order) => ({
           ma_don_hang: order.ma_don_hang,

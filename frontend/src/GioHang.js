@@ -28,7 +28,7 @@ const GioHang = () => {
 
   const handleTraCuu = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:8000/api/tra-cuu-don-hang", {
+      const response = await axios.get("https://caycanh13api.vercel.app/api/tra-cuu-don-hang", {
         params: { query: searchQuery },
       });
       setSearchResult(response.data);
@@ -67,7 +67,7 @@ const GioHang = () => {
                   <td>{index + 1}</td>
                   <td>
                     <img
-                      src={`http://127.0.0.1:8000/images/${item.hinh_san_pham}.jpg`}
+                      src={`https://caycanh13api.vercel.app/images/${item.hinh_san_pham}.jpg`}
                       alt={item.ten_san_pham}
                       width="80"
                       height="80"
@@ -184,7 +184,7 @@ const GioHang = () => {
                           <td>{i + 1}</td>
                           <td>
                             <img
-                              src={`http://127.0.0.1:8000/images/${sp.hinh_anh}.jpg`}
+                              src={`https://caycanh13api.vercel.app/images/${sp.hinh_anh}.jpg`}
                               alt={sp.ten_san_pham}
                               width="70"
                               height="70"

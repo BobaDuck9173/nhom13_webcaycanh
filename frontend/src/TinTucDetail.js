@@ -45,7 +45,7 @@ const TinTucDetail = () => {
               </small>
             </div>
             <img
-              src={`http://127.0.0.1:8000/images/news/${tinTuc.image}`}
+              src={`https://caycanh13api.vercel.app/images/news/${tinTuc.image}`}
               className="img-fluid rounded mb-4"
               alt={tinTuc.title}
             />
@@ -73,7 +73,7 @@ const TinTucDetail = () => {
                   >
                     <div className="d-flex align-items-center">
                       <img
-                        src={`http://127.0.0.1:8000/images/news/${post.image}`}
+                        src={`https://caycanh13api.vercel.app/images/news/${post.image}`}
                         alt={post.title}
                         className="me-2"
                         style={{ width: '50px', height: '50px', objectFit: 'cover' }}

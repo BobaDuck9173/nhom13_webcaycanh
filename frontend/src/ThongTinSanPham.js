@@ -40,8 +40,8 @@ const ThongTinSanPham = () => {
         setError(null);
 
         const [productRes, allProductsRes] = await Promise.all([
-          axios.get(`http://127.0.0.1:8000/api/sanpham/${maSanPham}`),
-          axios.get('http://127.0.0.1:8000/api/sanpham')
+          axios.get(`https://caycanh13api.vercel.app/api/sanpham/${maSanPham}`),
+          axios.get('https://caycanh13api.vercel.app/api/sanpham')
         ]);
 
         if (!productRes.data.success) {
@@ -162,7 +162,7 @@ const ThongTinSanPham = () => {
             {/* Ảnh chính */}
             <div className="ratio ratio-1x1">
               <img
-                src={`http://127.0.0.1:8000/images/${productImages[selectedImageIndex]}.jpg`}
+                src={`https://caycanh13api.vercel.app/images/${productImages[selectedImageIndex]}.jpg`}
                 className="img-fluid rounded-3 object-fit-contain bg-light"
                 alt={product.ten_san_pham}
                 onError={(e) => { e.target.onerror = null; e.target.src = '/images/placeholder.jpg'; }}
@@ -188,7 +188,7 @@ const ThongTinSanPham = () => {
                   }}
                 >
                   <img
-                    src={`http://127.0.0.1:8000/images/${img}.jpg`}
+                    src={`https://caycanh13api.vercel.app/images/${img}.jpg`}
                     className="img-fluid object-fit-cover h-100 w-100"
                     alt={`${product.ten_san_pham} - Ảnh ${index + 1}`}
                     onError={(e) => { e.target.onerror = null; e.target.src = '/images/placeholder.jpg'; }}
@@ -301,7 +301,7 @@ const ThongTinSanPham = () => {
                 <Link to={`/san-pham/${rp.ma_san_pham}`} className="text-decoration-none">
                   <div className="ratio ratio-1x1 image-wrapper">
                     <img
-                      src={`http://127.0.0.1:8000/images/${rp.hinh_san_pham}.jpg`}
+                      src={`https://caycanh13api.vercel.app/images/${rp.hinh_san_pham}.jpg`}
                       className="card-img-top object-fit-contain bg-light product-img"
                       alt={rp.ten_san_pham}
                       onError={(e) => { e.target.onerror = null; e.target.src = '/images/placeholder.jpg'; }}
