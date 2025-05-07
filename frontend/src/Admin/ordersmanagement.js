@@ -12,7 +12,7 @@ const OrdersManagement = ({ orders }) => {
   // Update order status
   const updateOrderStatus = async (orderId, newStatus) => {
     try {
-      const response = await fetch(`https://caycanh13api.vercel.app/api/donhang/${orderId}/trangthai`, {
+      const response = await fetch(`http://127.0.0.1:8000/api/donhang/${orderId}/trangthai`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

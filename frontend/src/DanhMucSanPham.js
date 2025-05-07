@@ -88,7 +88,7 @@ const DanhMucSanPham = () => {
           sanPhams.map((product) => (
             <div key={product.ma_san_pham} className="col-md-3 mb-4">
               <div className="card h-100">
-                <Link to={`/san-pham/${product.ma_san_pham}`} className="text-decoration-none">
+                <Link to={`/san-pham/${product.ma_san_pham}`} className="text-decoration-none"> 
                   <img
                     src={`http://127.0.0.1:8000/images/${product.hinh_san_pham}.jpg`}
                     className="card-img-top product-img"

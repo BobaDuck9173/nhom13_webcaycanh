@@ -50,6 +50,7 @@ Route::prefix('tai-khoan')->group(function () {
     Route::post('/dang-xuat', [AuthController::class, 'logout']);
     Route::post('/google-login', [AuthController::class, 'handleGoogleLogin']);
     Route::post('/google-register', [AuthController::class, 'handleGoogleRegister']);
+    Route::post('/dang-nhap/admin', [AuthController::class, 'adminLogin']);
 });
 
 // ---------- ROUTE CÓ BẢO VỆ ----------
@@ -57,6 +58,9 @@ Route::middleware(['auth:api', 'role:admin'])->group(function () {
     Route::post('/them-nhan-vien', [AuthController::class, 'createEmployee']);
 });
 
+Route::middleware(['kiemtra.dangnhap'])->get('/test', function () {
+    return 'Bạn đã qua middleware!';
+});
 
 // ---------- FALLBACK ----------
 Route::get('{any}', function () {

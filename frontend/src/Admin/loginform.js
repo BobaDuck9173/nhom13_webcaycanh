@@ -1,26 +1,40 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { authService } from "../services/authService";
 
 const LoginForm = ({ setIsAuthenticated, loading, setLoading }) => {
   const [loginError, setLoginError] = useState(null);
   const [credentials, setCredentials] = useState({ username: "", password: "" });
 
   // Mock login process
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     setLoginError(null);
     
     // Simulating API call with timeout
-    setTimeout(() => {
-      if (credentials.username === "admin" && credentials.password === "admin123") {
+    //setTimeout(() => {
+    //  if (credentials.username === "admin" && credentials.password === "admin123") {
+    //    setIsAuthenticated(true);
+    //    localStorage.setItem("adminAuthenticated", "true");
+    //  } else {
+     //   setLoginError("Tên đăng nhập hoặc mật khẩu không đúng");
+    //  }
+     // setLoading(false);
+    //}, 1000);
+    try {
+      const response = await authService.dangNhapAdmin(credentials);
+      if (response.thanh_cong) {
         setIsAuthenticated(true);
         localStorage.setItem("adminAuthenticated", "true");
       } else {
-        setLoginError("Tên đăng nhập hoặc mật khẩu không đúng");
+        setLoginError(response.thong_bao || "Tên đăng nhập hoặc mật khẩu không đúng");
       }
+    } catch (error) {
+      setLoginError(error.thong_bao || "Đã xảy ra lỗi khi đăng nhập");
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   // Handle input changes for login form

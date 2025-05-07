@@ -18,6 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->validateCsrfTokens(except: [
             'momo/ipn'
         ]);
+        
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

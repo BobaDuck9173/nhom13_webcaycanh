@@ -1,7 +1,7 @@
 // frontend/src/services/authService.js
 import axios from 'axios';
 
-const API_URL = 'https://caycanh13api.vercel.app/api/tai-khoan';
+const API_URL = 'http://127.0.0.1:8000/api/tai-khoan';
 
 export const authService = {
     dangNhap: async (credentials) => {
@@ -108,6 +108,26 @@ export const authService = {
         } catch (error) {
             console.error('Google registration error:', error);
             throw error.response?.data || { thong_bao: 'Đăng ký thất bại' };
+        }
+    },
+
+    dangNhapAdmin: async (credentials) => {
+        try {
+            const response = await axios.post(`${API_URL}/dang-nhap/admin`, {
+                username: credentials.username,
+                password: credentials.password
+            });
+
+            if (response.data.thanh_cong) {
+                // Save admin auth data to localStorage
+                localStorage.setItem('token', response.data.du_lieu.token);
+                localStorage.setItem('user', JSON.stringify(response.data.du_lieu.user));
+            }
+
+            return response.data;
+        } catch (error) {
+            console.error('Đăng nhập admin thất bại:', error);
+            throw error.response?.data || { thong_bao: 'Đăng nhập thất bại' };
         }
     }
 };

@@ -34,7 +34,7 @@ const ProductsManagement = ({ products, setProducts, categories }) => {
     if (!window.confirm("Bạn có chắc chắn muốn xóa sản phẩm này?")) return;
     try {
       setActionLoadingId(productId);
-      await axios.delete(`https://caycanh13api.vercel.app/api/sanpham/${productId}`);
+      await axios.delete(`http://127.0.0.1:8000/api/sanpham/${productId}`);
       setProducts(prev => prev.filter(p => p.ma_san_pham !== productId));
       toast.success(" Xóa sản phẩm thành công!");
     } catch (err) {
@@ -65,7 +65,7 @@ const ProductsManagement = ({ products, setProducts, categories }) => {
 
       if (isEdit) {
         await axios.post(
-          `https://caycanh13api.vercel.app/api/sanpham/${productData.ma_san_pham}?_method=PUT`,
+          `http://127.0.0.1:8000/api/sanpham/${productData.ma_san_pham}?_method=PUT`,
           formData,
           config
         );
@@ -85,7 +85,7 @@ const ProductsManagement = ({ products, setProducts, categories }) => {
         toast.success("✅ Cập nhật sản phẩm thành công!");
       } else {
         const res = await axios.post(
-          "https://caycanh13api.vercel.app/api/sanpham",
+          "http://127.0.0.1:8000/api/sanpham",
           formData,
           config
         );
@@ -166,7 +166,7 @@ const ProductsManagement = ({ products, setProducts, categories }) => {
                 <td>{product.ma_san_pham}</td>
                 <td>
                   <img
-                    src={`https://caycanh13api.vercel.app/images/${product.hinh_san_pham.includes('.') ? product.hinh_san_pham : product.hinh_san_pham + '.jpg'}`}
+                    src={`http://127.0.0.1:8000/images/${product.hinh_san_pham.includes('.') ? product.hinh_san_pham : product.hinh_san_pham + '.jpg'}`}
                     alt={product.ten_san_pham}
                     className="admin-product-img"
                   />

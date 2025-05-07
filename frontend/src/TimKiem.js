@@ -18,7 +18,7 @@ const TimKiem = () => {
       setLoi(null);
 
       const response = await axios.get(
-        `https://caycanh13api.vercel.app/api/search-san-pham?q=${encodeURIComponent(keyword)}`
+        `http://127.0.0.1:8000/api/search-san-pham?q=${encodeURIComponent(keyword)}`
       );
 
       if (response.data && Array.isArray(response.data.data)) {
@@ -101,7 +101,7 @@ const TimKiem = () => {
                 <Link to={`/san-pham/${sanPham.ma_san_pham}`}>
                   <Card.Img
                     variant="top"
-                    src={`https://caycanh13api.vercel.app/images/${sanPham.hinh_san_pham}.jpg`}
+                    src={`http://127.0.0.1:8000/images/${sanPham.hinh_san_pham}.jpg`}
                     alt={sanPham.ten_san_pham}
                     onError={(e) => {
                       e.target.src = "/images/placeholder.jpg";

@@ -114,6 +114,14 @@ class AuthController extends Controller
                 'password' => 'required|string'
             ]);
 
+            // Check for specific username and password
+            if ($request->username === 'admin' && $request->password === 'admin123') {
+                return response()->json([
+                    'thanh_cong' => false,
+                    'thong_bao' => 'Thông tin đăng nhập không chính xác'
+                ], 401);
+            }
+
             // Log the login attempt (excluding password)
             Log::info('Login attempt', [
                 'username' => $request->username
@@ -140,8 +148,11 @@ class AuthController extends Controller
                 }
             }
 
-            $token = $this->generateToken($user);
-
+            //$token = $this->generateToken($user);
+            //Get existing token from the database
+            $existingToken = Token::where('user_id', $user->id)->first();
+            $token = 'Bearer ' . $existingToken->token;
+            
             return response()->json([
                 'thanh_cong' => true,
                 'thong_bao' => 'Đăng nhập thành công',
@@ -176,11 +187,6 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $bearerToken = $request->bearerToken();
-        if ($bearerToken) {
-            Token::where('token', str_replace('Bearer ', '', $bearerToken))->delete();
-        }
-
         return response()->json([
             'thanh_cong' => true,
             'thong_bao' => 'Đăng xuất thành công'
@@ -305,4 +311,88 @@ class AuthController extends Controller
             ], 500);
         }
     }
+ public function checkAuth(Request $request)
+{
+    $bearerToken = $request->bearerToken();
+    
+    if (!$bearerToken) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Not authenticated',
+            'is_authenticated' => false
+        ]);
+    }
+
+    $token = Token::where('token', str_replace('Bearer ', '', $bearerToken))
+                ->with('user.roles.controls')
+                ->first();
+
+    if (!$token) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Invalid token',
+            'is_authenticated' => false
+        ]);
+    }
+
+    $user = $token->user;
+    $visibleControls = $user->roles->flatMap(function($role) {
+        return $role->controls->where('invisible', 0)->pluck('control_name');
+    })->unique()->values();
+    
+    return response()->json([
+        'success' => true,
+        'message' => 'Authenticated',
+        'is_authenticated' => true,
+        'data' => [
+            'user' => $user->only(['id', 'name', 'email', 'phone', 'address']),
+            'roles' => $user->roles->pluck('role_name'),
+            'permissions' => $visibleControls
+        ]
+    ]);
+}
+
+public function adminLogin(Request $request)
+{
+    try {
+        $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string'
+        ]);
+
+        // Check if the username and password match the admin credentials
+        if ($request->username === 'admin' && $request->password === 'admin123') {
+            $token = 'Bearer ' . base64_encode(Str::random(60));
+
+            return response()->json([
+                'thanh_cong' => true,
+                'thong_bao' => 'Đăng nhập thành công',
+                'du_lieu' => [
+                    'token' => $token,
+                    'user' => [
+                        'username' => 'admin',
+                        'role' => 'admin'
+                    ]
+                ]
+            ]);
+        }
+
+        return response()->json([
+            'thanh_cong' => false,
+            'thong_bao' => 'Tên đăng nhập hoặc mật khẩu không đúng'
+        ], 401);
+    } catch (\Illuminate\Validation\ValidationException $e) {
+        return response()->json([
+            'thanh_cong' => false,
+            'thong_bao' => 'Dữ liệu không hợp lệ',
+            'loi' => $e->errors()
+        ], 422);
+    } catch (\Exception $e) {
+        return response()->json([
+            'thanh_cong' => false,
+            'thong_bao' => 'Đăng nhập thất bại',
+            'loi' => $e->getMessage()
+        ], 500);
+    }
+}
 }

@@ -26,7 +26,7 @@ const CategoriesManagement = ({ categories, products }) => {
   const handleDelete = (ma_danh_muc) => {
     if (window.confirm("Bạn có chắc chắn muốn xóa danh mục này?")) {
       axios
-        .delete(`https://caycanh13api.vercel.app/api/danhmucsanpham/${ma_danh_muc}`)
+        .delete(`http://127.0.0.1:8000/api/danhmucsanpham/${ma_danh_muc}`)
         .then(() => {
           setCategoryList(categoryList.filter(c => c.ma_danh_muc !== ma_danh_muc));
         })
@@ -38,7 +38,7 @@ const CategoriesManagement = ({ categories, products }) => {
     e.preventDefault();
     if (editing) {
       axios
-        .put(`https://caycanh13api.vercel.app/api/danhmucsanpham/${form.ma_danh_muc}`, form)
+        .put(`http://127.0.0.1:8000/api/danhmucsanpham/${form.ma_danh_muc}`, form)
         .then((res) => {
           const updatedList = categoryList.map(c =>
             c.ma_danh_muc === form.ma_danh_muc ? res.data : c
@@ -49,7 +49,7 @@ const CategoriesManagement = ({ categories, products }) => {
         .catch((err) => console.error("Cập nhật thất bại:", err));
     } else {
       axios
-        .post("https://caycanh13api.vercel.app/api/danhmucsanpham", form)
+        .post("http://127.0.0.1:8000/api/danhmucsanpham", form)
         .then((res) => {
           setCategoryList([...categoryList, res.data]);
           setShowForm(false);

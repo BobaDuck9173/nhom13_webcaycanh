@@ -46,7 +46,7 @@ const ThanhToan = () => {
     const fetchTinh = async () => {
       setLoadingTinh(true);
       try {
-        const res = await fetch("https://caycanh13api.vercel.app/api/diachi/tinh");
+        const res = await fetch("http://127.0.0.1:8000/api/diachi/tinh");
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
         setDsTinh(data || []);
@@ -67,7 +67,7 @@ const ThanhToan = () => {
 
       setLoadingHuyen(true);
       try {
-        const res = await fetch(`https://caycanh13api.vercel.app/api/diachi/quan-huyen/${tinh.code}`);
+        const res = await fetch(`http://127.0.0.1:8000/api/diachi/quan-huyen/${tinh.code}`);
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
         setDsHuyen(data || []);
@@ -90,7 +90,7 @@ const ThanhToan = () => {
 
       setLoadingXa(true);
       try {
-        const res = await fetch(`https://caycanh13api.vercel.app/api/diachi/phuong-xa/${huyen.code}`);
+        const res = await fetch(`http://127.0.0.1:8000/api/diachi/phuong-xa/${huyen.code}`);
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
         setDsXa(data || []);
@@ -179,7 +179,7 @@ const ThanhToan = () => {
 
     try {
       // Gọi API đặt hàng
-      const res = await fetch("https://caycanh13api.vercel.app/api/dat-hang", {
+      const res = await fetch("http://127.0.0.1:8000/api/dat-hang", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dataToSend),
@@ -218,7 +218,7 @@ const ThanhToan = () => {
         customerPhone: formData.sdt.trim()
       };
 
-      const momoRes = await fetch("https://caycanh13api.vercel.app/api/momo/create", {
+      const momoRes = await fetch("http://127.0.0.1:8000/api/momo/create", {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
@@ -281,7 +281,7 @@ const ThanhToan = () => {
                     <tr key={`cart-item-${sp.ma_san_pham}-${sp.quantity}`}>
                       <td>
                         <img
-                          src={`https://caycanh13api.vercel.app/images/${sp.hinh_san_pham}.jpg`}
+                          src={`http://127.0.0.1:8000/images/${sp.hinh_san_pham}.jpg`}
                           alt={sp.ten_san_pham}
                           width={50}
                           onError={(e) => {
