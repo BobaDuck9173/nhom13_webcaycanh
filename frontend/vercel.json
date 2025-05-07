@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "projects": [
+    {
+      "name": "frontend",
+      "path": "frontend",
+      "buildCommand": "npm run build",
+      "outputDirectory": "build"
+    },
+    {
+      "name": "backend",
+      "path": "backend",
+      "buildCommand": "composer install",
+      "outputDirectory": "public"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/backend/public/index.php"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/$1"
+    }
+  ]
+}
